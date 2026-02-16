@@ -787,16 +787,15 @@ body {
 }
 
 .dotline {
-  grid-column: 1/-1;
   display: grid;
-  grid-template-columns: repeat(15, 1fr);
+  grid-template-columns: repeat(5, 1fr); /* 5 vertical columns */
+  grid-template-rows: repeat(3, auto); /* 3 horizontal rows */
+  gap: 40px 0; /* row gap only */
   align-items: center;
   justify-items: center;
   width: 100%;
   max-width: var(--track-width);
-  margin: 0;
   position: relative;
-  z-index: 1;
 }
 
 .stage-column {
