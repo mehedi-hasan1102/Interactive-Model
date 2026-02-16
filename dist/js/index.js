@@ -96,35 +96,45 @@
     var theme = btn.getAttribute('data-theme');
     titleEl.textContent = STAGES[stage];
     textEl.textContent = COPY[theme][stage];
-    card.dataset.theme = theme; // measure anchors
+    card.dataset.theme = theme; // show to get card size
 
-    var rDot = btn.getBoundingClientRect();
-    var rMid = midRow.getBoundingClientRect();
-    var rTop = guideTop.getBoundingClientRect();
-    var rBot = guideBot.getBoundingClientRect();
-    var rBase = baseline.getBoundingClientRect(); // show to get card size
+    popover.hidden = false; // reset position to measure
 
-    popover.hidden = false;
     card.style.left = '0px';
     card.style.top = '0px';
-    var rCard0 = card.getBoundingClientRect(); // clamp X inside mid
+    var rDot = btn.getBoundingClientRect();
+    var rCard = card.getBoundingClientRect();
+    var rPanel = root.querySelector('.imw-panel').getBoundingClientRect(); // constrain to panel
 
-    var desiredLeft = rDot.left - rMid.left - 180;
-    var maxLeft = rMid.width - rCard0.width - 24;
-    var left = Math.max(24, Math.min(desiredLeft, maxLeft)); // lane constraints
+    var rMid = midRow.getBoundingClientRect(); // relative to midRow container
+    // Center horizontally over dot
 
-    var laneUpMin = rTop.bottom - rMid.top + 12;
-    var laneUpMax = rBase.top - rMid.top - rCard0.height - 12;
-    var laneDnMin = rBase.bottom - rMid.top + 12;
-    var laneDnMax = rBot.top - rMid.top - rCard0.height - 12;
-    var preferredUp = rDot.top - rMid.top - rCard0.height - 12;
-    var preferredDn = rDot.bottom - rMid.top + 12;
-    var top = theme === 'reciprocity' ? Math.max(laneDnMin, Math.min(preferredDn, laneDnMax)) : Math.max(laneUpMin, Math.min(preferredUp, laneUpMax));
+    var left = rDot.left + rDot.width / 2 - rCard.width / 2 - rMid.left; // Position vertically: try top first, then bottom
+
+    var spaceAbove = rDot.top - rPanel.top;
+    var spaceBelow = rPanel.bottom - rDot.bottom;
+    var top; // Default to top if enough space, else bottom. 
+    // Or theme-based preference if desired, but space check is safer.
+
+    if (spaceAbove > rCard.height + 20) {
+      top = rDot.top - rMid.top - rCard.height - 15;
+      card.classList.remove('arrow-top');
+      card.classList.add('arrow-bottom');
+    } else {
+      top = rDot.bottom - rMid.top + 15;
+      card.classList.remove('arrow-bottom');
+      card.classList.add('arrow-top');
+    } // Horizontal clamping within panel
+    // Convert left to page-relative to check bounds (approximate logic for relative positioning)
+    // Actually simpler: clamp 'left' so (left + width) <= rMid.width and left >= 0
+
+
+    left = Math.max(10, Math.min(left, rMid.width - rCard.width - 10));
     card.style.left = left + 'px';
     card.style.top = top + 'px'; // compute placed rect and then position the floating highlighted title
+    // const rCardFinal = card.getBoundingClientRect();
+    // placeFloatingTitle(stage, theme, rCardFinal); // Disable old floating title logic if not needed or update it
 
-    var rCard = card.getBoundingClientRect();
-    placeFloatingTitle(stage, theme, rCard);
     closeBtn.focus();
     document.addEventListener('keydown', onEsc);
   }
