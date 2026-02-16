@@ -370,16 +370,13 @@ body {
 }
 
 .pill-cap-right {
-  --accent: var(--blue-dark);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--accent);
   color: #fff;
   font-weight: 700;
   font-size: 1.02rem;
   min-height: var(--pill-height);
-  padding: 0 28px;
   border-radius: var(--pill-radius) 0 0 0;
   letter-spacing: 0.01em;
   inline-size: var(--pill-sub-width);
@@ -388,12 +385,10 @@ body {
   white-space: normal;
   overflow-wrap: anywhere;
   text-align: center;
-  box-shadow: 0 12px 26px rgba(13, 36, 56, 0.14);
   min-width: 100% !important;
 }
 
 .pill-blue {
-  --main: var(--blue);
   border-radius: 999px;
   background-image: url("../../src/assets/BlueCircle.png");
   background-size: cover;
@@ -420,7 +415,6 @@ body {
 }
 
 .pill-cap-blue {
-  --accent: var(--blue-dark);
   border-radius: 999px;
   background-image: url("../../src/assets/Blue Oval@3x.png");
   background-size: cover;
@@ -936,15 +930,29 @@ body {
 }
 
 .cap-blue {
-  background: var(--blue);
+  border-radius: 999px;
+  background-image: url("../../src/assets/BlueCircle.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .cap-orange {
   background: var(--orange);
+  border-radius: 999px;
+  background-image: url("../../src/assets/Blue Oval@3x.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .cap-green {
   background: var(--green);
+  border-radius: 999px;
+  background-image: url("../../src/assets/Blue Oval@3x.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .note {
