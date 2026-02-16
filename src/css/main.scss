@@ -465,7 +465,7 @@ body {
 .pill-cap-blue {
   --accent: var(--blue-dark);
   border-radius: 999px;
-  background-image: url('../../src/assets/GreenCircle.png');
+  background-image: url('../../src/assets/Blue\ Oval@3x.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -473,10 +473,22 @@ body {
 
 .pill-cap-orange {
   --accent: var(--orange-dark);
+   --accent: var(--blue-dark);
+  border-radius: 999px;
+  background-image: url('../../src/assets/orange\ oval@3x.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .pill-cap-green {
   --accent: var(--green-dark);
+   --accent: var(--blue-dark);
+  border-radius: 999px;
+  background-image: url('../../src/assets/Green\ Oval@3x.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* Left tooltips */
