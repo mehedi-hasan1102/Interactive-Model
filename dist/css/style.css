@@ -931,25 +931,23 @@ body {
 
 .cap-blue {
   border-radius: 999px;
-  background-image: url("../../src/assets/BlueCircle.png");
+  background-image: url("../../src/assets/Blue Oval@3x.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .cap-orange {
-  background: var(--orange);
   border-radius: 999px;
-  background-image: url("../../src/assets/Blue Oval@3x.png");
+  background-image: url("../../src/assets/orange oval@3x.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .cap-green {
-  background: var(--green);
   border-radius: 999px;
-  background-image: url("../../src/assets/Blue Oval@3x.png");
+  background-image: url("../../src/assets/Green Oval@3x.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
