@@ -395,7 +395,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--accent);
+  
   color: #fff;
   font-weight: 700;
   font-size: 1.02rem;
@@ -409,7 +409,7 @@ body {
   white-space: normal;
   overflow-wrap: anywhere;
   text-align: center;
-  box-shadow: 0 12px 26px rgba(13, 36, 56, .14);
+ 
 }
 
 .pill-cap-right {
