@@ -122,43 +122,43 @@
     textEl.textContent = COPY[theme][stage];
     card.dataset.theme = theme;
 
-    // measure anchors
-    const rDot = btn.getBoundingClientRect();
-    const rMid = midRow.getBoundingClientRect();
-    const rTop = guideTop.getBoundingClientRect();
-    const rBot = guideBot.getBoundingClientRect();
-    const rBase = baseline.getBoundingClientRect();
-
     // show to get card size
     popover.hidden = false;
+
+    // reset position to measure
     card.style.left = '0px';
     card.style.top = '0px';
-    const rCard0 = card.getBoundingClientRect();
 
-    // clamp X inside mid
-    const desiredLeft = rDot.left - rMid.left - 180;
-    const maxLeft = rMid.width - rCard0.width - 24;
-    const left = Math.max(24, Math.min(desiredLeft, maxLeft));
+    const rDot = btn.getBoundingClientRect();
+    const rCard = card.getBoundingClientRect();
+    const rMid = midRow.getBoundingClientRect(); // relative to midRow container
 
-    // lane constraints
-    const laneUpMin = rTop.bottom - rMid.top + 12;
-    const laneUpMax = rBase.top - rMid.top - rCard0.height - 12;
-    const laneDnMin = rBase.bottom - rMid.top + 12;
-    const laneDnMax = rBot.top - rMid.top - rCard0.height - 12;
+    // Center horizontally over dot
+    let left = (rDot.left + rDot.width / 2) - (rCard.width / 2) - rMid.left;
 
-    const preferredUp = rDot.top - rMid.top - rCard0.height - 12;
-    const preferredDn = rDot.bottom - rMid.top + 12;
+    // Always position above the dot
+    let top = (rDot.top - rMid.top) - rCard.height - 15;
 
-    const top = (theme === 'reciprocity')
-      ? Math.max(laneDnMin, Math.min(preferredDn, laneDnMax))
-      : Math.max(laneUpMin, Math.min(preferredUp, laneUpMax));
+    // Add arrow pointing down
+    card.classList.remove('arrow-top');
+    card.classList.add('arrow-bottom');
+
+    // Horizontal clamping within midRow
+    left = Math.max(10, Math.min(left, rMid.width - rCard.width - 10));
 
     card.style.left = left + 'px';
     card.style.top = top + 'px';
 
-    // compute placed rect and then position the floating highlighted title
-    const rCard = card.getBoundingClientRect();
-    placeFloatingTitle(stage, theme, rCard);
+    // Calculate arrow offset to point at the dot
+    // Dot center relative to midRow
+    const dotCenterX = (rDot.left + rDot.width / 2) - rMid.left;
+    // Card left position (after clamping)
+    const cardLeft = left;
+    // Arrow offset from card's left edge
+    const arrowOffset = dotCenterX - cardLeft;
+
+    // Set CSS custom property for arrow position
+    card.style.setProperty('--arrow-offset', `${arrowOffset}px`);
 
     closeBtn.focus();
     document.addEventListener('keydown', onEsc);

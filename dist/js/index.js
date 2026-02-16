@@ -96,35 +96,36 @@
     var theme = btn.getAttribute('data-theme');
     titleEl.textContent = STAGES[stage];
     textEl.textContent = COPY[theme][stage];
-    card.dataset.theme = theme; // measure anchors
+    card.dataset.theme = theme; // show to get card size
 
-    var rDot = btn.getBoundingClientRect();
-    var rMid = midRow.getBoundingClientRect();
-    var rTop = guideTop.getBoundingClientRect();
-    var rBot = guideBot.getBoundingClientRect();
-    var rBase = baseline.getBoundingClientRect(); // show to get card size
+    popover.hidden = false; // reset position to measure
 
-    popover.hidden = false;
     card.style.left = '0px';
     card.style.top = '0px';
-    var rCard0 = card.getBoundingClientRect(); // clamp X inside mid
-
-    var desiredLeft = rDot.left - rMid.left - 180;
-    var maxLeft = rMid.width - rCard0.width - 24;
-    var left = Math.max(24, Math.min(desiredLeft, maxLeft)); // lane constraints
-
-    var laneUpMin = rTop.bottom - rMid.top + 12;
-    var laneUpMax = rBase.top - rMid.top - rCard0.height - 12;
-    var laneDnMin = rBase.bottom - rMid.top + 12;
-    var laneDnMax = rBot.top - rMid.top - rCard0.height - 12;
-    var preferredUp = rDot.top - rMid.top - rCard0.height - 12;
-    var preferredDn = rDot.bottom - rMid.top + 12;
-    var top = theme === 'reciprocity' ? Math.max(laneDnMin, Math.min(preferredDn, laneDnMax)) : Math.max(laneUpMin, Math.min(preferredUp, laneUpMax));
-    card.style.left = left + 'px';
-    card.style.top = top + 'px'; // compute placed rect and then position the floating highlighted title
-
+    var rDot = btn.getBoundingClientRect();
     var rCard = card.getBoundingClientRect();
-    placeFloatingTitle(stage, theme, rCard);
+    var rMid = midRow.getBoundingClientRect(); // relative to midRow container
+    // Center horizontally over dot
+
+    var left = rDot.left + rDot.width / 2 - rCard.width / 2 - rMid.left; // Always position above the dot
+
+    var top = rDot.top - rMid.top - rCard.height - 15; // Add arrow pointing down
+
+    card.classList.remove('arrow-top');
+    card.classList.add('arrow-bottom'); // Horizontal clamping within midRow
+
+    left = Math.max(10, Math.min(left, rMid.width - rCard.width - 10));
+    card.style.left = left + 'px';
+    card.style.top = top + 'px'; // Calculate arrow offset to point at the dot
+    // Dot center relative to midRow
+
+    var dotCenterX = rDot.left + rDot.width / 2 - rMid.left; // Card left position (after clamping)
+
+    var cardLeft = left; // Arrow offset from card's left edge
+
+    var arrowOffset = dotCenterX - cardLeft; // Set CSS custom property for arrow position
+
+    card.style.setProperty('--arrow-offset', "".concat(arrowOffset, "px"));
     closeBtn.focus();
     document.addEventListener('keydown', onEsc);
   }
