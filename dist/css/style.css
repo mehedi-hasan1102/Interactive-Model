@@ -104,7 +104,8 @@ body {
     gap: 6px;
     white-space: normal;
   }
-  .col-title .label {
+  .col-title .label,
+  .imw-label-match {
     font-size: 0.95rem;
   }
   .title-arrows {
@@ -772,6 +773,16 @@ body {
   letter-spacing: 0.005em;
   color: var(--title-accent);
   transition: color 0.2s ease;
+}
+
+.imw-label-match {
+  display: block;
+  font-family: "Inter", "Roboto", "Arial", sans-serif;
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0.005em;
+  color: #6b7985;
 }
 
 .col-title.top .label {
