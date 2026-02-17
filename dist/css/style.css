@@ -73,10 +73,10 @@ body {
   /* fixed horizontal gutter between main + rail */
   /* pill sizing */
   --pill-radius: 70px;
-  --pill-main-width: 192px;
-  --pill-sub-width: 176px;
+  --pill-main-width: 256px;
+  --pill-sub-width: 224px;
   --pill-gap: 18px;
-  --pill-height: 192px;
+  --pill-height: 144px;
   --dot-size: 24px;
   --dot-gap: 12px;
   --hint-shift-y: -34px;
@@ -105,12 +105,12 @@ body {
 
 @media (max-width: 1500px) {
   .imw {
-    --pill-main-width: 232px;
-    --pill-sub-width: 152px;
+    --pill-main-width: 256px;
+    --pill-sub-width: 224px;
     --pill-gap: 16px;
-    --pill-height: 90px;
+    --pill-height: 144px;
     --gutter: 30px;
-    --rail-width: 200px;
+    --rail-width: 256px;
     --dot-gap: 10px;
     --dot-size: 22px;
   }
@@ -475,7 +475,7 @@ body {
   font-weight: 700;
   font-size: 18pt;
   min-height: var(--pill-height);
-  padding: 0 28px;
+  padding: 0 18px;
   border-radius: 999px;
   letter-spacing: 0.01em;
   inline-size: var(--pill-sub-width);
@@ -511,8 +511,8 @@ body {
 .pill-orange,
 .pill-green {
   border-radius: 999px;
-  /* Keep identical scaling rules for all three while preserving image ratio */
-  background-size: 138% auto;
+  /* Larger than contain while keeping visible shape inside */
+  background-size: 140% auto;
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
@@ -535,7 +535,7 @@ body {
 .pill-cap-blue {
   border-radius: 999px;
   background-image: url("../../src/assets/Blue Oval@3x.png");
-  background-size: cover;
+  background-size: 140% auto;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -545,7 +545,7 @@ body {
   --accent: var(--blue-dark);
   border-radius: 999px;
   background-image: url("../../src/assets/orange oval@3x.png");
-  background-size: cover;
+  background-size: 140% auto;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -555,7 +555,7 @@ body {
   --accent: var(--blue-dark);
   border-radius: 999px;
   background-image: url("../../src/assets/Green Oval@3x.png");
-  background-size: cover;
+  background-size: 140% auto;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -1215,7 +1215,7 @@ body {
 .cap-blue {
   border-radius: 999px;
   background-image: url("../../src/assets/Blue Oval@3x.png");
-  background-size: cover;
+  background-size: 140% auto;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -1223,7 +1223,7 @@ body {
 .cap-orange {
   border-radius: 999px;
   background-image: url("../../src/assets/orange oval@3x.png");
-  background-size: cover;
+  background-size: 140% auto;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -1231,7 +1231,7 @@ body {
 .cap-green {
   border-radius: 999px;
   background-image: url("../../src/assets/Green Oval@3x.png");
-  background-size: cover;
+  background-size: 140% auto;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -1287,16 +1287,16 @@ body {
 }
 @media (max-width: 1024px) {
   .imw {
-    --pill-main-width: 252px;
-    --pill-sub-width: 168px;
+    --pill-main-width: 264px;
+    --pill-sub-width: 216px;
     --pill-gap: 16px;
   }
 }
 @media (max-width: 900px) {
   .imw {
     --row-gap: 108px;
-    --pill-main-width: 232px;
-    --pill-sub-width: 160px;
+    --pill-main-width: 252px;
+    --pill-sub-width: 208px;
     --pill-gap: 14px;
   }
   .imw-bg {
@@ -1320,7 +1320,7 @@ body {
     --row-gap: 96px;
     --dot-gap: 12px;
     --dot-size: 24px;
-    --pill-height: 86px;
+    --pill-height: 128px;
   }
   .imw-title {
     font-size: 24pt;
@@ -1339,17 +1339,17 @@ body {
     min-width: 720px;
   }
   .imw {
-    --pill-main-width: 212px;
-    --pill-sub-width: 150px;
+    --pill-main-width: 242px;
+    --pill-sub-width: 200px;
     --pill-gap: 12px;
   }
   .pill {
-    min-height: 86px;
+    min-height: 128px;
     font-size: 21pt;
     padding: 0 30px;
   }
   .pill-cap {
-    min-height: 86px;
+    min-height: 128px;
     font-size: 18pt;
     padding: 0 22px;
   }
