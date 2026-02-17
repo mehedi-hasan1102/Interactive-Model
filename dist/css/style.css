@@ -488,7 +488,8 @@ body {
 .pill-orange,
 .pill-green {
   border-radius: 999px;
-  background-size: 138% 138%;
+  /* Keep identical scaling rules for all three while preserving image ratio */
+  background-size: 138% auto;
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
@@ -506,8 +507,6 @@ body {
 .pill-green {
   --main: var(--green);
   background-image: url("../../src/assets/GreenCircle.png");
-  /* Keep the source artwork ratio so reciprocity icon stays round */
-  background-size: auto 162%;
 }
 
 .pill-cap-blue {
