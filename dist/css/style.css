@@ -1071,11 +1071,13 @@ body {
 }
 
 .dot:focus {
+  outline: none;
   box-shadow: none;
 }
 
 .dot.is-selected,
 .dot:focus-visible {
+  outline: none;
   background-image: var(--dot-image), url("../../src/assets/white dot@3x.png");
   background-size: 72% 72%, 100% 100%;
   background-repeat: no-repeat, no-repeat;
