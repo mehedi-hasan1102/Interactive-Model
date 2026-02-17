@@ -1,5 +1,19 @@
 @charset "UTF-8";
 /* styles.css */
+@font-face {
+  font-family: "Fira Sans";
+  src: url("../../src/assets/fonts/Fira_Sans/FiraSans-ExtraBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../../src/assets/fonts/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
 body {
   margin: 0;
   min-height: 100vh;
@@ -104,9 +118,8 @@ body {
     gap: 6px;
     white-space: normal;
   }
-  .col-title .label,
   .imw-label-match {
-    font-size: 0.95rem;
+    font-size: 14pt;
   }
   .title-arrows {
     font-size: 0.82rem;
@@ -136,10 +149,11 @@ body {
   grid-column: 2;
   width: 100%;
   text-align: center;
-  font-weight: 900;
+  font-family: "Fira Sans", Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-weight: 800;
   letter-spacing: 0.005em;
   margin: 1rem 0 1.5rem;
-  font-size: 2.4rem;
+  font-size: 24pt;
 }
 
 /* PAGE GRID */
@@ -156,9 +170,10 @@ body {
   grid-column: 2;
   margin: 24px 0 0;
   text-align: center;
-  font-size: clamp(1.2rem, 1.8vw, 1.9rem);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 18pt;
   line-height: 1.2;
-  font-weight: 700;
+  font-weight: 900;
   color: #6f7378;
 }
 
@@ -397,8 +412,9 @@ body {
   --accent: var(--blue-dark);
   border: none;
   color: #fff;
-  font-weight: 900;
-  font-size: 1.34rem;
+  font-family: "Fira Sans", Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-weight: 800;
+  font-size: 21pt;
   line-height: 1.2;
   letter-spacing: 0.01em;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.28);
@@ -455,8 +471,9 @@ body {
   align-items: center;
   justify-content: center;
   color: #fff;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   font-weight: 700;
-  font-size: 1.02rem;
+  font-size: 18pt;
   min-height: var(--pill-height);
   padding: 0 28px;
   border-radius: 999px;
@@ -474,8 +491,9 @@ body {
   align-items: center;
   justify-content: center;
   color: #fff;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   font-weight: 700;
-  font-size: 1.02rem;
+  font-size: 18pt;
   min-height: var(--pill-height);
   border-radius: var(--pill-radius) 0 0 0;
   letter-spacing: 0.01em;
@@ -551,6 +569,9 @@ body {
   max-width: 320px;
   background: #e9edf1;
   color: #0e1113;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 14pt;
+  font-weight: 600;
   padding: 1.1rem 1.2rem 1.2rem;
   border-radius: 22px;
   display: none;
@@ -776,8 +797,9 @@ body {
 
 .col-title .label {
   display: block;
-  font-size: 1.02rem;
-  font-weight: 600;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 15pt;
+  font-weight: 700;
   line-height: 1.25;
   letter-spacing: 0.005em;
   color: var(--title-accent);
@@ -787,7 +809,7 @@ body {
 .imw-label-match {
   display: block;
   font-family: "Inter", "Roboto", "Arial", sans-serif;
-  font-size: 1.02rem;
+  font-size: 14pt;
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: 0.005em;
@@ -1062,12 +1084,19 @@ body {
 .popover-card h3 {
   margin: 0.1rem 0 0.4rem;
   color: #fff;
-  font-size: 1.05rem;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 14pt;
+  font-weight: 600;
+  line-height: 1.3;
 }
 
 .popover-card p {
   margin: 0;
   color: #fff;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 14pt;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 .popover-card[data-theme=cultural] {
@@ -1294,7 +1323,7 @@ body {
     --pill-height: 86px;
   }
   .imw-title {
-    font-size: 1.95rem;
+    font-size: 24pt;
   }
   .imw-panel {
     padding: 28px 20px 34px;
@@ -1316,12 +1345,12 @@ body {
   }
   .pill {
     min-height: 86px;
-    font-size: 1.2rem;
+    font-size: 21pt;
     padding: 0 30px;
   }
   .pill-cap {
     min-height: 86px;
-    font-size: 1rem;
+    font-size: 18pt;
     padding: 0 22px;
   }
 }
@@ -1401,11 +1430,11 @@ body {
     box-shadow: 0 12px 26px rgba(13, 36, 56, 0.14);
   }
   .pill {
-    font-size: 1.14rem;
+    font-size: 21pt;
     aspect-ratio: auto;
   }
   .pill-cap {
-    font-size: 0.98rem;
+    font-size: 18pt;
     justify-content: flex-start;
   }
   .tooltip.speech {
