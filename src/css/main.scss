@@ -413,7 +413,7 @@ body {
 .left-group-3 {
   position: relative;
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
   width: 100%;
   gap: var(--pill-gap);
 }
@@ -434,13 +434,15 @@ body {
   border-radius: 999px;
 
 
-  min-height: var(--pill-height);
+  min-height: var(--pill-main-width);
   border-radius: var(--pill-radius);
 
   cursor: default;
   white-space: normal;
   inline-size: var(--pill-main-width);
   max-width: var(--pill-main-width);
+  block-size: var(--pill-main-width);
+  aspect-ratio: 1 / 1;
   flex: 0 0 var(--pill-main-width);
 
 
@@ -524,31 +526,27 @@ body {
   width: 100%;
 }
 
-.pill-blue {
-
+.pill-blue,
+.pill-orange,
+.pill-green {
   border-radius: 999px;
-  background-image: url('../../src/assets/BlueCircle.png');
   background-size: 138% 138%;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.pill-blue {
+  background-image: url('../../src/assets/BlueCircle.png');
 }
 
 .pill-orange {
   --main: var(--orange);
-  border-radius: 999px;
   background-image: url('../../src/assets/OrangeCircle.png');
-  background-size: 138% 138%;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .pill-green {
   --main: var(--green);
-  border-radius: 999px;
   background-image: url('../../src/assets/GreenCircle.png');
-  background-size: 150% 150%;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .pill-cap-blue {
@@ -1068,6 +1066,11 @@ body {
   padding: 0;
   align-self: center;
   transform: none;
+  background-color: transparent;
+  background-image: var(--dot-image);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   transition: box-shadow .2s ease, transform .2s ease;
   z-index: 4;
 }
@@ -1078,38 +1081,33 @@ body {
 // }
 
 
-.dot::after {
-  display: none;
+.dot:hover {
+  box-shadow: none;
 }
 
-.dot:hover,
 .dot:focus {
-  box-shadow: 0 16px 32px rgba(18, 28, 38, .24);
+  box-shadow: none;
+}
+
+.dot.is-selected,
+.dot:focus-visible {
+  background-image: var(--dot-image), url("../../src/assets/white dot@3x.png");
+  background-size: 72% 72%, 100% 100%;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
 }
 
 /* Theme-specific dot icons */
 .dot[data-theme="cultural"] {
-  background-color: transparent;
-  background-image: url("../../src/assets/blue dot 1@3x.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  --dot-image: url("../../src/assets/blue dot 1@3x.png");
 }
 
 .dot[data-theme="power"] {
-  background-color: transparent;
-  background-image: url("../../src/assets/Orange dot@3x.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  --dot-image: url("../../src/assets/Orange dot@3x.png");
 }
 
 .dot[data-theme="reciprocity"] {
-  background-color: transparent;
-  background-image: url("../../src/assets/Green dot 1@3x.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  --dot-image: url("../../src/assets/Green dot 1@3x.png");
 }
 
 
@@ -1512,6 +1510,7 @@ body {
   .pill-cap {
     inline-size: 100%;
     max-width: 100%;
+    block-size: auto;
     flex: 1 1 auto;
     min-height: auto;
     padding: 16px 24px;
@@ -1520,6 +1519,7 @@ body {
 
   .pill {
     font-size: 1.14rem;
+    aspect-ratio: auto;
   }
 
   .pill-cap {

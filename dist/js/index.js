@@ -23,6 +23,7 @@
   var closeBtn = popover.querySelector('[data-close]');
   var titleMap = {};
   var lastTrigger = null;
+  var dots = Array.from(root.querySelectorAll('.dot'));
   document.querySelectorAll('.col-title').forEach(function (n) {
     titleMap[Number(n.dataset.stageTitle)] = n;
   }); // column hover colorization (mouse)
@@ -37,7 +38,7 @@
     return root.removeAttribute('data-hover-col');
   }); // keyboard parity
 
-  root.querySelectorAll('.dot').forEach(function (btn) {
+  dots.forEach(function (btn) {
     btn.addEventListener('focus', function () {
       return root.setAttribute('data-hover-col', btn.getAttribute('data-stage'));
     });
@@ -45,6 +46,12 @@
       return root.removeAttribute('data-hover-col');
     });
   });
+
+  function clearSelectedDot() {
+    dots.forEach(function (dot) {
+      return dot.classList.remove('is-selected');
+    });
+  }
 
   function centerXForStage(stage) {
     // middle (power) dot is the anchor
@@ -91,7 +98,9 @@
   function openPopover(btn) {
     // NEW: restore any previously hidden default titles BEFORE opening a new popup
     clearFloatingTitle();
+    clearSelectedDot();
     lastTrigger = btn;
+    btn.classList.add('is-selected');
     var stage = Number(btn.getAttribute('data-stage'));
     var theme = btn.getAttribute('data-theme');
     titleEl.textContent = STAGES[stage];
@@ -133,6 +142,7 @@
   function closePopover() {
     popover.hidden = true;
     clearFloatingTitle();
+    clearSelectedDot();
     document.removeEventListener('keydown', onEsc);
 
     if (lastTrigger) {
@@ -147,7 +157,7 @@
 
   closeBtn.addEventListener('click', closePopover); // click handlers
 
-  root.querySelectorAll('.dot').forEach(function (btn) {
+  dots.forEach(function (btn) {
     btn.type = 'button';
     btn.addEventListener('click', function () {
       return openPopover(btn);
