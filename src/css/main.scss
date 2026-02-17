@@ -84,6 +84,9 @@ body {
   --dot-size: 24px;
   --dot-gap: 12px;
   --hint-shift-y: -34px;
+  --row1-nudge-y: 72px;
+  --row2-nudge-y: 36px;
+  --row3-nudge-y: 0px;
   --dash-blue: #8f9fb3;
   --dash-orange: #d8aa98;
   --dash-green: #97b5a3;
@@ -238,6 +241,7 @@ body {
   grid-area: left1;
   align-content: center;
   justify-content: center;
+  transform: translateY(var(--row1-nudge-y));
 }
 
 .left-hint-1 {
@@ -266,6 +270,7 @@ body {
   justify-self: end;
   width: var(--pill-sub-width);
   max-width: var(--pill-sub-width);
+  transform: translateY(var(--row1-nudge-y));
 }
 
 .rail-hint-1 {
@@ -279,6 +284,7 @@ body {
   grid-area: left3;
   align-content: center;
   justify-content: center;
+  transform: translateY(var(--row2-nudge-y));
 }
 
 .left-hint-2 {
@@ -317,6 +323,7 @@ body {
   justify-self: end;
   width: var(--pill-sub-width);
   max-width: var(--pill-sub-width);
+  transform: translateY(var(--row2-nudge-y));
 }
 
 .rail-hint-2 {
@@ -382,7 +389,21 @@ body {
 .rail-hint-3 {
   align-self: start;
   margin-top: 0;
-  transform: translateY(var(--hint-shift-y));
+}
+
+.left-hint-1,
+.rail-hint-1 {
+  transform: translateY(calc(var(--hint-shift-y) + var(--row1-nudge-y)));
+}
+
+.left-hint-2,
+.rail-hint-2 {
+  transform: translateY(calc(var(--hint-shift-y) + var(--row2-nudge-y)));
+}
+
+.left-hint-3,
+.rail-hint-3 {
+  transform: translateY(calc(var(--hint-shift-y) + var(--row3-nudge-y)));
 }
 
 .guide-bottom {
@@ -405,6 +426,22 @@ body {
   align-content: flex-start;
   justify-self: flex-end;
   text-align: right;
+}
+
+/* Keep all three themed rows vertically centered in their grid tracks */
+.left-group-1,
+.left-group-2,
+.left-group-3,
+.rail-group-1,
+.rail-group-2,
+.rail-group-3 {
+  align-self: center;
+}
+
+.left-group-1,
+.left-group-2,
+.left-group-3 {
+  justify-content: center;
 }
 
 /* Keep right hints directly under right pills/caps (Unsafe / Commissioner Power / Extractive) */
@@ -1396,6 +1433,8 @@ body {
     --pill-main-width: 264px;
     --pill-sub-width: 220px;
     --pill-gap: 14px;
+    --row1-nudge-y: 46px;
+    --row2-nudge-y: 24px;
   }
 
   .imw-bg {
@@ -1424,6 +1463,8 @@ body {
     --dot-gap: 12px;
     --dot-size: 24px;
     --pill-height: 134px;
+    --row1-nudge-y: 28px;
+    --row2-nudge-y: 16px;
   }
 
   .imw-title {
