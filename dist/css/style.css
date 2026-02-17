@@ -437,7 +437,12 @@ body {
 
 .pill:focus {
   outline: none;
-  box-shadow: 0 0 0 3px var(--focus);
+  box-shadow: none;
+}
+
+.pill:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 .pill br {
