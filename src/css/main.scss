@@ -77,10 +77,10 @@ body {
 
   /* pill sizing */
   --pill-radius: 70px;
-  --pill-main-width: 256px;
-  --pill-sub-width: 224px;
+  --pill-main-width: 268px;
+  --pill-sub-width: 236px;
   --pill-gap: 18px;
-  --pill-height: 144px;
+  --pill-height: 152px;
   --dot-size: 24px;
   --dot-gap: 12px;
   --hint-shift-y: -34px;
@@ -111,12 +111,12 @@ body {
 
 @media (max-width:1500px) {
   .imw {
-    --pill-main-width: 256px;
-    --pill-sub-width: 224px;
+    --pill-main-width: 268px;
+    --pill-sub-width: 236px;
     --pill-gap: 16px;
-    --pill-height: 144px;
+    --pill-height: 152px;
     --gutter: 30px;
-    --rail-width: 256px;
+    --rail-width: 268px;
     --dot-gap: 10px;
     --dot-size: 22px;
   }
@@ -1384,8 +1384,8 @@ body {
 
 @media (max-width:1024px) {
   .imw {
-    --pill-main-width: 264px;
-    --pill-sub-width: 216px;
+    --pill-main-width: 276px;
+    --pill-sub-width: 228px;
     --pill-gap: 16px;
   }
 }
@@ -1393,8 +1393,8 @@ body {
 @media (max-width:900px) {
   .imw {
     --row-gap: 108px;
-    --pill-main-width: 252px;
-    --pill-sub-width: 208px;
+    --pill-main-width: 264px;
+    --pill-sub-width: 220px;
     --pill-gap: 14px;
   }
 
@@ -1423,7 +1423,7 @@ body {
     --row-gap: 96px;
     --dot-gap: 12px;
     --dot-size: 24px;
-    --pill-height: 128px;
+    --pill-height: 134px;
   }
 
   .imw-title {
@@ -1448,19 +1448,19 @@ body {
   }
 
   .imw {
-    --pill-main-width: 242px;
-    --pill-sub-width: 200px;
+    --pill-main-width: 254px;
+    --pill-sub-width: 212px;
     --pill-gap: 12px;
   }
 
   .pill {
-    min-height: 128px;
+    min-height: 134px;
     font-size: 21pt;
     padding: 0 30px;
   }
 
   .pill-cap {
-    min-height: 128px;
+    min-height: 134px;
     font-size: 18pt;
     padding: 0 22px;
   }
