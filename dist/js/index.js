@@ -21,6 +21,11 @@
   var titleEl = document.getElementById('imw-popover-title');
   var textEl = document.getElementById('imw-popover-text');
   var closeBtn = popover.querySelector('[data-close]');
+  var POPOVER_SHIFT_X = -280; // negative value moves the popover card to the left
+
+  var POPOVER_MIN_LEFT = -480; // allow stronger overflow to the left of midRow
+
+  var POPOVER_EDGE_GAP = 10;
   var titleMap = {};
   var lastTrigger = null;
   var dots = Array.from(root.querySelectorAll('.dot'));
@@ -121,9 +126,11 @@
     var top = rDot.top - rMid.top - rCard.height - 15; // Add arrow pointing down
 
     card.classList.remove('arrow-top');
-    card.classList.add('arrow-bottom'); // Horizontal clamping within midRow
+    card.classList.add('arrow-bottom'); // Move card slightly left, then clamp within midRow
 
-    left = Math.max(10, Math.min(left, rMid.width - rCard.width - 10));
+    left += POPOVER_SHIFT_X; // Horizontal clamping: keep right side safe, allow extra left overflow
+
+    left = Math.max(POPOVER_MIN_LEFT, Math.min(left, rMid.width - rCard.width - POPOVER_EDGE_GAP));
     card.style.left = left + 'px';
     card.style.top = top + 'px'; // Calculate arrow offset to point at the dot
     // Dot center relative to midRow
