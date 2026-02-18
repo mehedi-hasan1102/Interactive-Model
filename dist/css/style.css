@@ -91,6 +91,12 @@ body {
   --row1-nudge-y: clamp(14px, 1.6vw, 22px);
   --row2-nudge-y: 0px;
   --row3-nudge-y: 0px;
+  --row1-left-correction: 0px;
+  --row1-right-correction: 0px;
+  --row2-left-correction: 0px;
+  --row2-right-correction: 0px;
+  --row3-left-correction: 0px;
+  --row3-right-correction: 0px;
   --dash-blue: #8f9fb3;
   --dash-orange: #d8aa98;
   --dash-green: #97b5a3;
@@ -235,7 +241,7 @@ body {
   grid-area: left1;
   align-content: center;
   justify-content: center;
-  transform: translateY(var(--row1-nudge-y));
+  transform: translateY(calc(var(--row1-nudge-y) + var(--row1-left-correction)));
 }
 
 .left-hint-1 {
@@ -264,7 +270,7 @@ body {
   justify-self: end;
   width: var(--pill-sub-width);
   max-width: var(--pill-sub-width);
-  transform: translateY(var(--row1-nudge-y));
+  transform: translateY(calc(var(--row1-nudge-y) + var(--row1-right-correction)));
 }
 
 .rail-hint-1 {
@@ -278,7 +284,7 @@ body {
   grid-area: left3;
   align-content: center;
   justify-content: center;
-  transform: translateY(var(--row2-nudge-y));
+  transform: translateY(calc(var(--row2-nudge-y) + var(--row2-left-correction)));
 }
 
 .left-hint-2 {
@@ -317,7 +323,7 @@ body {
   justify-self: end;
   width: var(--pill-sub-width);
   max-width: var(--pill-sub-width);
-  transform: translateY(var(--row2-nudge-y));
+  transform: translateY(calc(var(--row2-nudge-y) + var(--row2-right-correction)));
 }
 
 .rail-hint-2 {
@@ -379,19 +385,28 @@ body {
   margin-top: 0;
 }
 
-.left-hint-1,
+.left-hint-1 {
+  transform: translateY(calc(var(--hint-shift-y) + var(--row1-nudge-y) + var(--row1-left-correction)));
+}
+
 .rail-hint-1 {
-  transform: translateY(calc(var(--hint-shift-y) + var(--row1-nudge-y)));
+  transform: translateY(calc(var(--hint-shift-y) + var(--row1-nudge-y) + var(--row1-right-correction)));
 }
 
-.left-hint-2,
+.left-hint-2 {
+  transform: translateY(calc(var(--hint-shift-y) + var(--row2-nudge-y) + var(--row2-left-correction)));
+}
+
 .rail-hint-2 {
-  transform: translateY(calc(var(--hint-shift-y) + var(--row2-nudge-y)));
+  transform: translateY(calc(var(--hint-shift-y) + var(--row2-nudge-y) + var(--row2-right-correction)));
 }
 
-.left-hint-3,
+.left-hint-3 {
+  transform: translateY(calc(var(--hint-shift-y) + var(--row3-nudge-y) + var(--row3-left-correction)));
+}
+
 .rail-hint-3 {
-  transform: translateY(calc(var(--hint-shift-y) + var(--row3-nudge-y)));
+  transform: translateY(calc(var(--hint-shift-y) + var(--row3-nudge-y) + var(--row3-right-correction)));
 }
 
 .guide-bottom {
@@ -407,6 +422,7 @@ body {
   justify-self: end;
   width: var(--pill-sub-width);
   max-width: var(--pill-sub-width);
+  transform: translateY(calc(var(--row3-nudge-y) + var(--row3-right-correction)));
 }
 
 .rail-hint-3 {
@@ -458,17 +474,7 @@ body {
   align-items: flex-start;
   width: 100%;
   gap: var(--pill-gap);
-}
-
-/* Fine-tune middle/bottom row baseline so side pills align with dot rows */
-.left-group-2,
-.rail-group-2 {
-  transform: translateY(calc(var(--row2-nudge-y) - clamp(8px, 1vw, 12px)));
-}
-
-.left-group-3,
-.rail-group-3 {
-  transform: translateY(clamp(-18px, -1.2vw, -10px));
+  transform: translateY(calc(var(--row3-nudge-y) + var(--row3-left-correction)));
 }
 
 .pill {

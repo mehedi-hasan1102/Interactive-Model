@@ -33,7 +33,62 @@
   var dots = Array.from(root.querySelectorAll('.dot'));
   document.querySelectorAll('.col-title').forEach(function (n) {
     titleMap[Number(n.dataset.stageTitle)] = n;
-  }); // column hover colorization (mouse)
+  });
+  var ROW_ALIGNMENT = [{
+    theme: 'cultural',
+    stage: 2,
+    leftSel: '.left-group-1 .pill-row',
+    rightSel: '.rail-group-1 .pill-cap-right',
+    leftVar: '--row1-left-correction',
+    rightVar: '--row1-right-correction'
+  }, {
+    theme: 'power',
+    stage: 2,
+    leftSel: '.left-group-2 .pill-row',
+    rightSel: '.rail-group-2 .pill-cap-right',
+    leftVar: '--row2-left-correction',
+    rightVar: '--row2-right-correction'
+  }, {
+    theme: 'reciprocity',
+    stage: 2,
+    leftSel: '.left-group-3 .pill-row',
+    rightSel: '.rail-group-3 .pill-cap-right',
+    leftVar: '--row3-left-correction',
+    rightVar: '--row3-right-correction'
+  }];
+
+  function centerY(el) {
+    var r = el.getBoundingClientRect();
+    return r.top + r.height / 2;
+  }
+
+  function alignRowsToDotBaselines() {
+    ROW_ALIGNMENT.forEach(function (row) {
+      var dot = dotline.querySelector(".dot[data-theme=\"".concat(row.theme, "\"][data-stage=\"").concat(row.stage, "\"]"));
+      var left = root.querySelector(row.leftSel);
+      var right = root.querySelector(row.rightSel);
+      if (!dot) return;
+      var yDot = centerY(dot);
+
+      if (left) {
+        var leftDelta = Math.round(yDot - centerY(left));
+        root.style.setProperty(row.leftVar, "".concat(leftDelta, "px"));
+      }
+
+      if (right) {
+        var rightDelta = Math.round(yDot - centerY(right));
+        root.style.setProperty(row.rightVar, "".concat(rightDelta, "px"));
+      }
+    });
+  }
+
+  var alignRaf = 0;
+
+  function scheduleAlignment() {
+    cancelAnimationFrame(alignRaf);
+    alignRaf = requestAnimationFrame(alignRowsToDotBaselines);
+  } // column hover colorization (mouse)
+
 
   dotline.addEventListener('mousemove', function (e) {
     var r = dotline.getBoundingClientRect();
@@ -53,6 +108,24 @@
       return root.removeAttribute('data-hover-col');
     });
   });
+  window.addEventListener('resize', scheduleAlignment);
+  window.addEventListener('load', scheduleAlignment);
+  window.addEventListener('pageshow', scheduleAlignment);
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(scheduleAlignment);
+  }
+
+  if (window.ResizeObserver) {
+    var ro = new ResizeObserver(scheduleAlignment);
+    ro.observe(root);
+    ro.observe(dotline);
+  }
+
+  setTimeout(scheduleAlignment, 0);
+  setTimeout(scheduleAlignment, 180);
+  setTimeout(scheduleAlignment, 450);
+  scheduleAlignment();
 
   function clearSelectedDot() {
     dots.forEach(function (dot) {

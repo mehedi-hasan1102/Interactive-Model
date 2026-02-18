@@ -51,6 +51,63 @@
   const dots = Array.from(root.querySelectorAll('.dot'));
   document.querySelectorAll('.col-title').forEach(n => { titleMap[Number(n.dataset.stageTitle)] = n; });
 
+  const ROW_ALIGNMENT = [
+    {
+      theme: 'cultural',
+      stage: 2,
+      leftSel: '.left-group-1 .pill-row',
+      rightSel: '.rail-group-1 .pill-cap-right',
+      leftVar: '--row1-left-correction',
+      rightVar: '--row1-right-correction'
+    },
+    {
+      theme: 'power',
+      stage: 2,
+      leftSel: '.left-group-2 .pill-row',
+      rightSel: '.rail-group-2 .pill-cap-right',
+      leftVar: '--row2-left-correction',
+      rightVar: '--row2-right-correction'
+    },
+    {
+      theme: 'reciprocity',
+      stage: 2,
+      leftSel: '.left-group-3 .pill-row',
+      rightSel: '.rail-group-3 .pill-cap-right',
+      leftVar: '--row3-left-correction',
+      rightVar: '--row3-right-correction'
+    }
+  ];
+
+  function centerY(el) {
+    const r = el.getBoundingClientRect();
+    return r.top + (r.height / 2);
+  }
+
+  function alignRowsToDotBaselines() {
+    ROW_ALIGNMENT.forEach((row) => {
+      const dot = dotline.querySelector(`.dot[data-theme="${row.theme}"][data-stage="${row.stage}"]`);
+      const left = root.querySelector(row.leftSel);
+      const right = root.querySelector(row.rightSel);
+      if (!dot) return;
+
+      const yDot = centerY(dot);
+      if (left) {
+        const leftDelta = Math.round(yDot - centerY(left));
+        root.style.setProperty(row.leftVar, `${leftDelta}px`);
+      }
+      if (right) {
+        const rightDelta = Math.round(yDot - centerY(right));
+        root.style.setProperty(row.rightVar, `${rightDelta}px`);
+      }
+    });
+  }
+
+  let alignRaf = 0;
+  function scheduleAlignment() {
+    cancelAnimationFrame(alignRaf);
+    alignRaf = requestAnimationFrame(alignRowsToDotBaselines);
+  }
+
   // column hover colorization (mouse)
   dotline.addEventListener('mousemove', (e) => {
     const r = dotline.getBoundingClientRect();
@@ -65,6 +122,22 @@
     btn.addEventListener('focus', () => root.setAttribute('data-hover-col', btn.getAttribute('data-stage')));
     btn.addEventListener('blur', () => root.removeAttribute('data-hover-col'));
   });
+
+  window.addEventListener('resize', scheduleAlignment);
+  window.addEventListener('load', scheduleAlignment);
+  window.addEventListener('pageshow', scheduleAlignment);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(scheduleAlignment);
+  }
+  if (window.ResizeObserver) {
+    const ro = new ResizeObserver(scheduleAlignment);
+    ro.observe(root);
+    ro.observe(dotline);
+  }
+  setTimeout(scheduleAlignment, 0);
+  setTimeout(scheduleAlignment, 180);
+  setTimeout(scheduleAlignment, 450);
+  scheduleAlignment();
 
   function clearSelectedDot() {
     dots.forEach(dot => dot.classList.remove('is-selected'));
